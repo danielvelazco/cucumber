@@ -1,14 +1,16 @@
 Feature: Banco_retail
-   banco y retail
+   retail
     
-    Scenario Outline: Generar estado de cuenta
-        Given Seleccionar opcion generar estado de cuenta de "<cuenta>" 1
-        When Se genero estado de cuenta? 1
-        Then verifico si "<resultado>" se genero el estado de cuenta de la cuenta de cheques 1
-           
-    Examples:
-    | cuenta | tipo-cuenta |   resultado |
-    | 123    | cheques     |  SI         |
-    | 456    | ahorros     |  NO         |
+    Scenario: bolsa de compra calcula correctamente
+        Given Usuario entra a la tienda online "tiendita.com"
+        When Selecciona 2 "laptos" cada una por un precio de 385
+        When Selecciona 1 "tv" por un precio es 430
+        Then La cantidad total de articulos es 3   
+        Then El monto total de la bolsa es de 1200
 
-
+    Scenario: bolsa de compra no calcula correctamente
+        Given Usuario entra a la tienda online "tiendita.com"
+        When Selecciona 2 "laptos" cada una por un precio de 385
+        When Selecciona 1 "tv" por un precio es 430
+        Then La cantidad total de articulos es 4   
+        Then El monto total de la bolsa es de 1250
